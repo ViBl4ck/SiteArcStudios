@@ -44,6 +44,14 @@ export function initNav() {
       toggle.focus();
     }
   });
+
+  // Click outside: close mobile menu
+  document.addEventListener('click', e => {
+    if (!navLinks.classList.contains('open')) return;
+    if (navbar.contains(e.target)) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    navLinks.classList.remove('open');
+  });
 }
 
 function onScroll() {
