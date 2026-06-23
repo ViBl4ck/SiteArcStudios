@@ -77,17 +77,13 @@ function revealMonster(card) {
 
 function updateCodexCount() {
   const count = state.discoveredMonsters.size;
-  const totalStr = `${count}/5`;
 
-  // Monstruário header
   const countEl = document.getElementById('codex-count');
   if (countEl) countEl.textContent = count;
 
-  // Dashboard codex widget
   const dashCount = document.getElementById('codex-count-dashboard');
   if (dashCount) dashCount.textContent = count;
 
-  // Dashboard codex fill bar
   const fill = document.getElementById('codex-dashboard-fill');
   if (fill) fill.style.width = `${(count / 5) * 100}%`;
 }

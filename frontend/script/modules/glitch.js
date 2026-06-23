@@ -5,7 +5,6 @@ export function initGlitch() {
   const section = document.getElementById('projetos-futuros');
   if (!section) return;
 
-  // Periodically inject extra glitch artifact via JS
   setInterval(() => {
     if (!isVisible(section)) return;
     triggerJsGlitch(section);
@@ -16,7 +15,6 @@ function triggerJsGlitch(section) {
   const title = section.querySelector('.glitch-title');
   if (!title) return;
 
-  // Brief horizontal shift
   title.style.transition = 'none';
   title.style.transform = `translate(${randInt(-4, 4)}px, ${randInt(-2, 2)}px)`;
   title.style.filter = `hue-rotate(${randInt(60, 180)}deg) saturate(2)`;

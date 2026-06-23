@@ -11,7 +11,6 @@ export function initAuth() {
   loginBtn?.addEventListener('click', onLogin);
   logoutBtn?.addEventListener('click', onLogout);
 
-  // Phone mask
   const phoneInput = document.getElementById('reg-phone');
   phoneInput?.addEventListener('input', () => {
     phoneInput.value = maskPhone(phoneInput.value);
@@ -73,7 +72,6 @@ function onRegister(e) {
   form.reset();
   renderDashboardLoggedIn();
 
-  // Scroll to dashboard
   setTimeout(() => {
     const dash = document.getElementById('dashboard');
     if (dash) dash.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -132,14 +130,12 @@ export function renderDashboardLoggedIn() {
   if (classEl) classEl.textContent = user.class.charAt(0).toUpperCase() + user.class.slice(1);
   if (avatar)  avatar.textContent  = ICONS[user.class] ?? '⚔';
 
-  // Journey progress in dashboard
   const fill  = document.getElementById('dashboard-journey-fill');
   const pct   = document.getElementById('dashboard-journey-pct');
   const val   = state.journeyProgress;
   if (fill)  fill.style.width   = `${val}%`;
   if (pct)   pct.textContent    = `${val}%`;
 
-  // Codex
   const codexCount = document.getElementById('codex-count-dashboard');
   const codexFill  = document.getElementById('codex-dashboard-fill');
   const n = state.discoveredMonsters.size;
@@ -154,7 +150,6 @@ function renderDashboardLoggedOut() {
   if (panelIn)  panelIn.hidden = true;
 }
 
-// ── Helpers ──────────────────────────────────
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
