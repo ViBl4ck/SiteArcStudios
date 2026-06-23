@@ -86,19 +86,6 @@ Se o e-mail existir na memória da sessão, o painel do jogador é liberado.
 Clique nas entidades bloqueadas para revelar a entrada do Codex Cultural.
 Cada descoberta atualiza a contagem geral e o progresso pessoal do dashboard.
 
-## Como Adicionar Imagens
-
-Coloque os arquivos em [frontend/assets/images/](frontend/assets/images/).
-Depois, substitua os blocos de placeholder no HTML pelos elementos com imagem real.
-
-Sugestão de organização:
-
-- `hero/` - imagem principal e background.
-- `biomas/` - artes de biomas.
-- `classes/` - imagens das classes.
-- `monstros/` - artes das entidades.
-- `prints/` - capturas de tela do sistema.
-
 ## Back-end
 
 A pasta [backend/](backend/) já está separada para a API futura.

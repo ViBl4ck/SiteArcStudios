@@ -1,8 +1,5 @@
-backend/
-teste.md
-frontend/assets/images/*.png
-frontend/assets/images/*.jpg
-frontend/assets/images/*.jpeg
-frontend/assets/images/*.webp
-frontend/assets/images/*.gif
+/backend/
+
+
+
 
