@@ -37,6 +37,16 @@ const MONSTER_DATA = {
     biome: 'Rios da Amazônia',
     desc: 'Mãe das Águas. Sereia de cabelos verdes e pele cor de cobre. Seu canto hipnótico arrasta os homens para o fundo dos rios. Nenhum pescador que a viu voltou para contar.',
   },
+  boto: {
+    name: 'BOTO-COR-DE-ROSA',
+    biome: 'Rios da Amazônia',
+    desc: 'Encantado das águas. Nas noites de festa ribeirinha, toma a forma de um homem elegante de terno branco e chapéu, sempre escondendo o orifício no topo da cabeça. Sedutor e ardiloso, encanta os incautos e os leva para o fundo do rio.',
+  },
+  'mula-sem-cabeca': {
+    name: 'MULA SEM CABEÇA',
+    biome: 'Estradas Coloniais',
+    desc: 'Mulher amaldiçoada por profanar o sagrado, condenada a galopar como uma mula com fogo no lugar da cabeça. Da quinta-feira à meia-noite, suas patas em brasa ecoam pelos caminhos, e quem cruza seu trajeto arde com sua maldição.',
+  },
 };
 
 const TOTAL_MONSTERS = Object.keys(MONSTER_DATA).length;

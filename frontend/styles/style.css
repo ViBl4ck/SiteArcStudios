@@ -2187,3 +2187,39 @@ a.class-indicator.active {
 .auth-panel[hidden] {
   display: none;
 }
+
+/* ─── Imagens reais integradas (sprites, arte, capa, monstros) ───── */
+.img-placeholder.has-img {
+  display: block;
+  padding: 0;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  min-height: 0;
+}
+.media-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Arte-chave de fundo do herói */
+.hero-bg__art .media-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 72%;
+  z-index: 0;
+}
+
+/* Imagens reveladas do monstruário (preenchem o card) */
+.monster-reveal-img.has-img {
+  padding: 0;
+  border: none;
+}
+.monster-reveal-img .media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
