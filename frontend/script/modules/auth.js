@@ -16,8 +16,36 @@ export function initAuth() {
     phoneInput.value = maskPhone(phoneInput.value);
   });
 
-  // Se há sessão ativa, já mostra o painel logado (só afeta a página do dashboard)
+  // Se há sessão ativa, já mostra o painel logado (só afeta a página da jornada)
   if (state.isLoggedIn) renderDashboardLoggedIn();
+
+  initTabs();
+}
+
+// Abas Nova Jornada / Continuar (página jornada.html)
+function initTabs() {
+  const tabs = document.querySelectorAll('.auth-tab');
+  if (!tabs.length) return;
+
+  const show = name => {
+    document.querySelectorAll('.auth-tab').forEach(t => {
+      const on = t.dataset.tab === name;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
+    const cad = document.getElementById('tab-cadastro');
+    const log = document.getElementById('tab-login');
+    if (cad) cad.hidden = name !== 'cadastro';
+    if (log) log.hidden = name !== 'login';
+  };
+
+  tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.tab)));
+  document.querySelectorAll('[data-tab-target]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      show(el.dataset.tabTarget);
+    });
+  });
 }
 
 function onRegister(e) {
@@ -74,10 +102,12 @@ function onRegister(e) {
 
   form.reset();
 
-  // Cadastro e Dashboard agora são páginas separadas → redireciona
+  // Cadastro e Dashboard agora são a mesma página → mostra o painel logado
+  renderDashboardLoggedIn();
   setTimeout(() => {
-    window.location.href = 'dashboard.html';
-  }, 1100);
+    const sec = document.getElementById('jornada');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
 }
 
 function onLogin() {
@@ -113,11 +143,11 @@ function onLogout() {
 }
 
 export function renderDashboardLoggedIn() {
-  const panelOut = document.getElementById('dashboard-out');
+  const authArea = document.getElementById('jornada-auth');
   const panelIn  = document.getElementById('dashboard-in');
 
-  if (panelOut) panelOut.hidden = true;
-  if (panelIn)  panelIn.hidden = false;
+  if (authArea) authArea.hidden = true;
+  if (panelIn)  panelIn.hidden  = false;
 
   const { user } = state;
   if (!user) return;
@@ -146,10 +176,10 @@ export function renderDashboardLoggedIn() {
 }
 
 function renderDashboardLoggedOut() {
-  const panelOut = document.getElementById('dashboard-out');
+  const authArea = document.getElementById('jornada-auth');
   const panelIn  = document.getElementById('dashboard-in');
-  if (panelOut) panelOut.hidden = false;
-  if (panelIn)  panelIn.hidden = true;
+  if (authArea) authArea.hidden = false;
+  if (panelIn)  panelIn.hidden  = true;
 }
 
 function isValidEmail(email) {

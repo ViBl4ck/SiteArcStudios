@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-class="guerreiro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Anahí — Metroidvania pixel art brasileiro. Fauna, flora e folclore tratados com respeito. Ipê Arc Studios.">
+  <title>Jornada — Anahí · Ipê Arc Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/style.css">
+  <script type="module" src="./script/main.js"></script>
+</head>
+<body data-page="jornada">
+
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+  <div id="journey-wrap" role="progressbar" aria-label="Progresso da Jornada" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div id="journey-fill"></div>
+    <span id="journey-label" class="sr-only">Jornada: 0%</span>
+  </div>
+
+  <!-- Header injetado por script/modules/layout.js -->
+  <div id="site-header"></div>
+
+  <main>
+    <section id="jornada" class="section section--alt" aria-labelledby="jornada-title">
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-eyebrow">// SUA CONTA</p>
+          <h2 id="jornada-title" class="section-title">JORNADA</h2>
+          <p class="section-desc">Crie sua conta ou continue de onde parou</p>
+        </header>
+
+        <!-- ÁREA DESLOGADA: abas Nova Jornada / Continuar -->
+        <div id="jornada-auth">
+          <div class="auth-tabs" role="tablist" aria-label="Acesso à jornada">
+            <button class="auth-tab active" id="tabbtn-cadastro" data-tab="cadastro" role="tab" aria-selected="true" aria-controls="tab-cadastro">▶ Nova Jornada</button>
+            <button class="auth-tab" id="tabbtn-login" data-tab="login" role="tab" aria-selected="false" aria-controls="tab-login">↺ Continuar</button>
+          </div>
+
+          <!-- Aba: Nova Jornada (cadastro) -->
+          <div class="auth-panel" id="tab-cadastro" role="tabpanel" aria-labelledby="tabbtn-cadastro">
+            <form id="cadastro-form" class="pixel-form" novalidate aria-label="Formulário de cadastro"><div class="form-group"><label for="reg-name" class="form-label">NOME DO JOGADOR *</label><input type="text" id="reg-name" name="name" class="form-input" placeholder="Seu nome de guerreiro" autocomplete="name" required aria-required="true" aria-describedby="reg-name-error"><span class="form-error" id="reg-name-error" role="alert"></span></div><div class="form-group"><label for="reg-email" class="form-label">E-MAIL *</label><input type="email" id="reg-email" name="email" class="form-input" placeholder="email@exemplo.com" autocomplete="email" required aria-required="true" aria-describedby="reg-email-error"><span class="form-error" id="reg-email-error" role="alert"></span></div><div class="form-group"><label for="reg-phone" class="form-label">NÚMERO (Opcional)</label><input type="tel" id="reg-phone" name="phone" class="form-input" placeholder="(00) 00000-0000" autocomplete="tel" aria-describedby="reg-phone-hint reg-phone-error"><span id="reg-phone-hint" class="form-hint">Formato: (00) 00000-0000</span><span class="form-error" id="reg-phone-error" role="alert"></span></div><div class="form-group"><label for="reg-birth" class="form-label">DATA DE NASCIMENTO *</label><input type="date" id="reg-birth" name="birth" class="form-input" required aria-required="true" aria-describedby="reg-birth-error"><span class="form-error" id="reg-birth-error" role="alert"></span></div><div class="form-group"><p class="form-label" id="class-radio-label">CLASSE INICIAL</p><div class="form-class-radios" role="group" aria-labelledby="class-radio-label"><label class="class-radio"><input type="radio" name="reg-class" value="guerreiro" checked><span class="class-radio__display">⚔ Guerreiro</span></label><label class="class-radio"><input type="radio" name="reg-class" value="arqueiro"><span class="class-radio__display">🏹 Arqueiro</span></label><label class="class-radio"><input type="radio" name="reg-class" value="curandeiro"><span class="class-radio__display">🌿 Curandeiro</span></label></div></div><button type="submit" class="btn btn--primary btn--full btn--lg">▶ INICIAR NOVA JORNADA</button></form>
+          </div>
+
+          <!-- Aba: Continuar (login) -->
+          <div class="auth-panel" id="tab-login" role="tabpanel" aria-labelledby="tabbtn-login" hidden>
+            <div id="dashboard-out" class="dashboard-panel"><div class="login-box pixel-form"><p class="login-box__title">// CONTINUAR JORNADA</p><div class="form-group"><label for="login-email" class="form-label">E-MAIL</label><input type="email" id="login-email" name="login-email" class="form-input" placeholder="email@exemplo.com" autocomplete="email" required aria-required="true" aria-describedby="login-email-error"><span class="form-error" id="login-email-error" role="alert"></span></div><div class="form-group"><label for="login-pass" class="form-label">SENHA (simulada)</label><input type="password" id="login-pass" name="login-pass" class="form-input" placeholder="Qualquer senha" autocomplete="current-password"></div><button id="login-btn" class="btn btn--primary btn--full">▶ ENTRAR</button><p class="login-box__hint">Sem cadastro? <a href="#tab-cadastro" class="link" data-tab-target="cadastro">Iniciar Jornada</a></p></div></div>
+          </div>
+        </div>
+
+        <!-- ÁREA LOGADA: painel do jogador -->
+        <div id="dashboard-in" class="dashboard-panel" hidden aria-live="polite"><div class="player-card"><div class="player-card__avatar" id="player-avatar" aria-hidden="true">⚔</div><div class="player-card__info"><h3 class="player-name" id="player-display-name">Jogador</h3><span class="player-class-tag" id="player-display-class">Guerreiro</span><div class="player-journey"><span class="player-journey__label">JORNADA</span><div class="player-journey__bar" role="progressbar" aria-label="Progresso da jornada" aria-valuemin="0" aria-valuemax="100"><div class="player-journey__fill" id="dashboard-journey-fill"></div></div><span class="player-journey__pct" id="dashboard-journey-pct">0%</span></div></div><button id="logout-btn" class="btn btn--ghost btn--sm">SAIR</button></div><div class="dashboard-grid"><div class="game-owned-card"><div class="game-owned-card__art img-placeholder" role="img" aria-label="Arte do jogo Anahí"><span class="img-placeholder__label">[ CAPA: Anahí ]</span></div><div class="game-owned-card__content"><h3 class="game-owned-card__title">ANAHÍ</h3><p class="game-owned-card__status">✓ Jogo Adquirido — Acesso Antecipado</p><p class="game-owned-card__genre">Metroidvania · RPG · Pixel Art</p><p class="game-owned-card__dev">// Em desenvolvimento — Ipê Arc Studios</p><button class="btn btn--primary" disabled aria-disabled="true">▶ JOGAR — EM BREVE</button></div></div><div class="codex-widget"><h3 class="codex-widget__title">📖 CODEX PESSOAL</h3><p class="codex-widget__stat">Entradas descobertas: <strong id="codex-count-dashboard">0</strong>/7</p><div class="codex-widget__bar" role="progressbar" aria-label="Progresso do Codex" aria-valuemin="0" aria-valuemax="5"><div class="codex-widget__fill" id="codex-dashboard-fill"></div></div><a href="monstruario.html" class="btn btn--ghost btn--sm">→ Ver Monstruário</a></div></div></div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer injetado por script/modules/layout.js -->
+  <div id="site-footer"></div>
+
+</body>
+</html>

@@ -7,8 +7,6 @@ const NAV_ITEMS = [
   { href: 'o-jogo.html',           page: 'o-jogo',           label: 'O Jogo' },
   { href: 'monstruario.html',      page: 'monstruario',      label: 'Monstruário' },
   { href: 'trailer.html',          page: 'trailer',          label: 'Trailer' },
-  { href: 'cadastro.html',         page: 'cadastro',         label: 'Cadastro', cta: true },
-  { href: 'dashboard.html',        page: 'dashboard',        label: 'Dashboard' },
   { href: 'loja.html',             page: 'loja',             label: 'Loja' },
   { href: 'projetos-futuros.html', page: 'projetos-futuros', label: 'Proj. Futuros' },
 ];
@@ -41,10 +39,10 @@ function injectHeader(active) {
         <span class="nav-logo__studio">Ipê Arc Studios</span>
       </a>
 
-      <div id="class-indicator" class="class-indicator" aria-label="Classe selecionada">
+      <a href="jornada.html" id="class-indicator" class="class-indicator${active === 'jornada' ? ' active' : ''}" aria-label="Sua jornada — cadastro e painel do jogador">
         <span id="class-indicator-icon" aria-hidden="true">⚔</span>
         <span id="class-indicator-name">Guerreiro</span>
-      </div>
+      </a>
 
       <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu de navegação">
         <span aria-hidden="true"></span>
