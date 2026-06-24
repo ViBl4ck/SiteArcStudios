@@ -15,6 +15,9 @@ export function initAuth() {
   phoneInput?.addEventListener('input', () => {
     phoneInput.value = maskPhone(phoneInput.value);
   });
+
+  // Se há sessão ativa, já mostra o painel logado (só afeta a página do dashboard)
+  if (state.isLoggedIn) renderDashboardLoggedIn();
 }
 
 function onRegister(e) {
@@ -70,12 +73,11 @@ function onRegister(e) {
   showToast('PROGRESSO SALVO', 'Seu perfil foi criado com sucesso.', 'system', 5000);
 
   form.reset();
-  renderDashboardLoggedIn();
 
+  // Cadastro e Dashboard agora são páginas separadas → redireciona
   setTimeout(() => {
-    const dash = document.getElementById('dashboard');
-    if (dash) dash.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 600);
+    window.location.href = 'dashboard.html';
+  }, 1100);
 }
 
 function onLogin() {

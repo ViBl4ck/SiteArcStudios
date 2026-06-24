@@ -3,6 +3,7 @@ const LS = {
   USERS:    'anahi:users',
   MONSTERS: 'anahi:monsters',
   CLASS:    'anahi:class',
+  SESSION:  'anahi:session',
 };
 
 export const state = {
@@ -22,6 +23,19 @@ function hydrate() {
     state.registeredUsers    = Array.isArray(users) ? users : [];
     state.discoveredMonsters = new Set(Array.isArray(monsters) ? monsters : []);
     state.currentClass       = cls;
+
+    // Restaura sessão de login (persiste entre páginas)
+    const sessionEmail = localStorage.getItem(LS.SESSION);
+    if (sessionEmail) {
+      const u = state.registeredUsers.find(
+        x => x.email.toLowerCase() === sessionEmail.toLowerCase()
+      );
+      if (u) {
+        state.user         = u;
+        state.isLoggedIn   = true;
+        state.currentClass = u.class;
+      }
+    }
   } catch {
     // ignore parse errors — start fresh
   }
@@ -41,6 +55,7 @@ export function registerUser(userData) {
   state.currentClass = userData.class;
   localStorage.setItem(LS.USERS, JSON.stringify(state.registeredUsers));
   localStorage.setItem(LS.CLASS, userData.class);
+  localStorage.setItem(LS.SESSION, userData.email);
 }
 
 export function loginUser(email) {
@@ -51,6 +66,7 @@ export function loginUser(email) {
     state.user       = found;
     state.isLoggedIn = true;
     state.currentClass = found.class;
+    localStorage.setItem(LS.SESSION, found.email);
     return true;
   }
   return false;
@@ -59,6 +75,7 @@ export function loginUser(email) {
 export function logoutUser() {
   state.isLoggedIn = false;
   state.user = null;
+  localStorage.removeItem(LS.SESSION);
 }
 
 export function discoverMonster(id) {

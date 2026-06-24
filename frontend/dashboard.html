@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-class="guerreiro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Anahí — Metroidvania pixel art brasileiro. Fauna, flora e folclore tratados com respeito. Ipê Arc Studios.">
+  <title>Dashboard — Anahí · Ipê Arc Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/style.css">
+  <script type="module" src="./script/main.js"></script>
+</head>
+<body data-page="dashboard">
+
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+  <div id="journey-wrap" role="progressbar" aria-label="Progresso da Jornada" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div id="journey-fill"></div>
+    <span id="journey-label" class="sr-only">Jornada: 0%</span>
+  </div>
+
+  <!-- Header injetado por script/modules/layout.js -->
+  <div id="site-header"></div>
+
+  <main>
+    <section id="dashboard" class="section" aria-labelledby="dashboard-title"><div class="section-inner"><header class="section-header"><p class="section-eyebrow">// PAINEL DO JOGADOR</p><h2 id="dashboard-title" class="section-title">DASHBOARD</h2></header><div id="dashboard-out" class="dashboard-panel"><div class="login-box pixel-form"><p class="login-box__title">// CONTINUAR JORNADA</p><div class="form-group"><label for="login-email" class="form-label">E-MAIL</label><input type="email" id="login-email" name="login-email" class="form-input" placeholder="email@exemplo.com" autocomplete="email" required aria-required="true" aria-describedby="login-email-error"><span class="form-error" id="login-email-error" role="alert"></span></div><div class="form-group"><label for="login-pass" class="form-label">SENHA (simulada)</label><input type="password" id="login-pass" name="login-pass" class="form-input" placeholder="Qualquer senha" autocomplete="current-password"></div><button id="login-btn" class="btn btn--primary btn--full">▶ ENTRAR</button><p class="login-box__hint">Sem cadastro? <a href="cadastro.html" class="link">Iniciar Jornada</a></p></div></div><div id="dashboard-in" class="dashboard-panel" hidden aria-live="polite"><div class="player-card"><div class="player-card__avatar" id="player-avatar" aria-hidden="true">⚔</div><div class="player-card__info"><h3 class="player-name" id="player-display-name">Jogador</h3><span class="player-class-tag" id="player-display-class">Guerreiro</span><div class="player-journey"><span class="player-journey__label">JORNADA</span><div class="player-journey__bar" role="progressbar" aria-label="Progresso da jornada" aria-valuemin="0" aria-valuemax="100"><div class="player-journey__fill" id="dashboard-journey-fill"></div></div><span class="player-journey__pct" id="dashboard-journey-pct">0%</span></div></div><button id="logout-btn" class="btn btn--ghost btn--sm">SAIR</button></div><div class="dashboard-grid"><div class="game-owned-card"><div class="game-owned-card__art img-placeholder" role="img" aria-label="Arte do jogo Anahí"><span class="img-placeholder__label">[ CAPA: Anahí ]</span></div><div class="game-owned-card__content"><h3 class="game-owned-card__title">ANAHÍ</h3><p class="game-owned-card__status">✓ Jogo Adquirido — Acesso Antecipado</p><p class="game-owned-card__genre">Metroidvania · RPG · Pixel Art</p><p class="game-owned-card__dev">// Em desenvolvimento — Ipê Arc Studios</p><button class="btn btn--primary" disabled aria-disabled="true">▶ JOGAR — EM BREVE</button></div></div><div class="codex-widget"><h3 class="codex-widget__title">📖 CODEX PESSOAL</h3><p class="codex-widget__stat">Entradas descobertas: <strong id="codex-count-dashboard">0</strong>/7</p><div class="codex-widget__bar" role="progressbar" aria-label="Progresso do Codex" aria-valuemin="0" aria-valuemax="5"><div class="codex-widget__fill" id="codex-dashboard-fill"></div></div><a href="monstruario.html" class="btn btn--ghost btn--sm">→ Ver Monstruário</a></div></div></div></div></section>
+  </main>
+
+  <!-- Footer injetado por script/modules/layout.js -->
+  <div id="site-footer"></div>
+
+</body>
+</html>

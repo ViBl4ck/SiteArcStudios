@@ -160,7 +160,8 @@ ul { list-style: none; }
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 1.5rem;
-  gap: 1.5rem;
+  gap: 1rem;
+  position: relative;
 }
 
 .nav-logo {
@@ -185,20 +186,41 @@ ul { list-style: none; }
   text-transform: uppercase;
 }
 
+/* Logo empurra indicador + hambúrguer para a direita */
+.nav-logo { margin-right: auto; order: 0; }
+
+/* Menu = painel dropdown (escondido por padrão em TODAS as larguras) */
 .nav-links {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 1.5rem;
   display: flex;
-  align-items: center;
-  gap: 0.15rem;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0;
+  min-width: 230px;
+  background: rgba(13, 13, 15, 0.98);
+  border: 1px solid var(--border-bright);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.75);
+  padding: 0.4rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 950;
+}
+.nav-links.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .nav-link {
+  display: block;
+  width: 100%;
   font-family: var(--font-pixel);
-  font-size: 0.48rem;
+  font-size: 0.5rem;
   color: var(--text-muted);
-  padding: 0.4rem 0.6rem;
+  padding: 0.7rem 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   transition: color 0.2s, background 0.2s;
@@ -230,19 +252,20 @@ ul { list-style: none; }
   border: 1px solid var(--accent-dark);
   padding: 0.3rem 0.6rem;
   flex-shrink: 0;
+  order: 1;
   transition: color 0.3s, border-color 0.3s;
 }
 
-/* Mobile toggle */
+/* Hambúrguer — visível em TODAS as larguras */
 .nav-toggle {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   background: none;
   border: 1px solid var(--border-bright);
   padding: 0.5rem 0.6rem;
   cursor: pointer;
-  margin-left: auto;
+  order: 2;
 }
 .nav-toggle span {
   display: block;
@@ -2015,27 +2038,13 @@ ul { list-style: none; }
 
 /* ─── Responsive ──────────────────────────── */
 @media (max-width: 900px) {
+  /* Painel ocupa a largura toda no celular/tablet */
   .nav-links {
-    display: none;
-    position: absolute;
-    top: calc(var(--nav-height) + var(--journey-h));
-    left: 0; right: 0;
-    background: rgba(13,13,15,0.98);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-links.open {
-    display: flex;
-  }
-  .nav-link {
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid var(--border);
-    display: block;
-  }
-  .nav-toggle {
-    display: flex;
+    left: 0;
+    right: 0;
+    min-width: 0;
+    border-left: none;
+    border-right: none;
   }
   .class-indicator {
     display: none;
