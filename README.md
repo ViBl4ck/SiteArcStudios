@@ -1,124 +1,131 @@
-# SiteArcStudios
+# SiteArcStudios — Anahí
 
-SiteArcStudios é a base do projeto do jogo Anahí, com o front-end separado da futura camada de back-end.
-O site principal fica em [frontend/index.html](frontend/index.html) e a raiz do repositório apenas redireciona para ele.
+Landing page do jogo **Anahí**, desenvolvida por **Ipê Arc Studios**.  
+Anahí é um Metroidvania/RPG em pixel art ambientado no folclore brasileiro, com protagonista Tupi e cenário na Mata Atlântica e Caatinga do Brasil colonial do séc. XVII.
 
-## Visão Geral
+---
 
-O sistema atual funciona como uma landing page interativa do projeto.
-Ele apresenta a proposta do jogo, mostra o monstruário, permite selecionar classes, simula cadastro e login, e exibe um dashboard com progresso e Codex.
+## Objetivo do Projeto
 
-### O que já existe
+Apresentar o jogo Anahí ao público, permitir cadastro de interessados no acesso antecipado e exibir o Monstruário interativo com entidades do folclore brasileiro.
 
-- Página inicial com navegação e hero.
-- Seções de apresentação do jogo, biomas, classes e monstruário.
-- Cadastro e login simulados no front-end.
-- Dashboard com progresso da jornada e codex pessoal.
-- Seção de projetos futuros com efeito glitch.
-- Pasta dedicada para imagens do site em [frontend/assets/images/](frontend/assets/images/).
-- Base de back-end separada em [backend/](backend/), com [backend/.env](backend/.env).
+---
 
-### O que ainda é base de estrutura
+## Tecnologias Utilizadas
 
-- O back-end ainda não tem rotas, banco ou autenticação real.
-- Os dados atuais são mantidos só em memória no navegador, sem persistência.
-- As imagens do site ainda podem ser substituídas pelos arquivos finais da equipe.
+- **HTML5 semântico** com atributos de acessibilidade (ARIA)
+- **CSS3** com BEM, custom properties (`var(--token)`) e design responsivo
+- **JavaScript vanilla** com ES Modules (sem frameworks, sem build step)
+- Deploy via **GitHub Pages** — branch `main`, raiz `/`
 
-## Estrutura do Projeto
+Fontes externas (CDN):
+- `Press Start 2P` — títulos pixel art
+- `Rajdhani` — corpo do texto
 
-- [frontend/](frontend/) - interface do site.
-- [frontend/index.html](frontend/index.html) - entrada principal do front-end.
-- [frontend/script/](frontend/script/) - JavaScript do site.
-- [frontend/styles/](frontend/styles/) - estilos do projeto.
-- [frontend/assets/images/](frontend/assets/images/) - imagens, sprites, banners e prints.
-- [backend/](backend/) - base para a API futura.
-- [backend/.env](backend/.env) - variáveis locais do ambiente.
+---
 
-## Como Executar
+## Estrutura de Diretórios
 
-### Opção 1 - Live Server
+```
+SiteArcStudios/
+├── index.html                  # Redireciona para frontend/index.html
+├── README.md
+├── CLAUDE.md
+├── frontend/
+│   ├── index.html              # Página principal (single-page)
+│   ├── styles/
+│   │   └── style.css           # CSS completo (BEM, variáveis, responsivo)
+│   ├── script/
+│   │   ├── main.js             # Entry point — importa e inicializa módulos
+│   │   └── modules/
+│   │       ├── state.js        # Estado global com persistência (localStorage)
+│   │       ├── nav.js          # Navbar, scroll, barra de jornada
+│   │       ├── classes.js      # Seleção de classe (Guerreiro/Arqueiro/Curandeiro)
+│   │       ├── auth.js         # Cadastro, login e dashboard do jogador
+│   │       ├── bestiary.js     # Monstruário — dados e reveal das entidades
+│   │       ├── shop.js         # Loja — produtos e interações
+│   │       ├── reveal.js       # Animação de entrada das seções no scroll
+│   │       ├── glitch.js       # Efeito glitch na seção Projetos Futuros
+│   │       └── toast.js        # Notificações toast
+│   └── assets/
+│       └── images/             # Imagens do site (WebP otimizado)
+└── backend/
+    └── README.md               # Reservado para API futura
+```
 
-1. Abra o projeto no VS Code.
+---
+
+## Como Executar Localmente
+
+ES Modules exigem servidor HTTP — não funcionam via `file://`.
+
+**Opção 1 — VS Code Live Server / Live Preview**
+1. Abra a pasta do projeto no VS Code.
 2. Clique com o botão direito em [frontend/index.html](frontend/index.html).
-3. Escolha "Open with Live Server".
+3. Escolha "Open with Live Server" ou "Show Preview".
 
-### Opção 2 - Abrir pelo navegador com servidor local
+**Opção 2 — Python**
+```bash
+python -m http.server 8000
+```
+Acesse `http://localhost:8000/frontend/`.
 
-1. Inicie qualquer servidor HTTP local na pasta do projeto.
-2. Abra [frontend/index.html](frontend/index.html) no navegador.
+**Opção 3 — Raiz com redirecionamento**
+Abra [index.html](index.html) via servidor — ele redireciona automaticamente para `frontend/index.html`.
 
-### Opção 3 - A partir da raiz
+---
 
-1. Abra [index.html](index.html).
-2. O arquivo raiz redireciona automaticamente para o front-end.
+## Funcionalidades Implementadas
 
-## Como Usar o Sistema
+| Funcionalidade | Módulo |
+|---|---|
+| Navbar responsiva com menu hamburguer | `nav.js` |
+| Barra de progresso da jornada (scroll) | `nav.js` |
+| Seleção de classe com tema dinâmico (CSS var) | `classes.js` |
+| Cadastro simulado com validação de campos | `auth.js` |
+| Login simulado por e-mail (persiste entre reloads) | `auth.js` |
+| Dashboard do jogador com progresso e Codex | `auth.js` |
+| Monstruário com 7 entidades desbloqueáveis | `bestiary.js` |
+| Loja com 3 produtos placeholder | `shop.js` |
+| Galeria de sprites (3 cards de prévia) | `index.html` |
+| Animação de reveal das seções no scroll | `reveal.js` |
+| Efeito glitch na seção Projetos Futuros | `glitch.js` |
+| Notificações toast por tipo (sucesso/erro/unlock) | `toast.js` |
 
-### Navegação
+**Entidades do Monstruário:** Cuca, Saci-Pererê, Curupira, Boitatá, Corpo Seco, Mapinguari, Iara.
 
-Use o menu superior para ir até as seções principais do site:
+---
 
-- Início
-- O Jogo
-- Monstruário
-- Trailer
-- Cadastro
-- Dashboard
-- Projetos Futuros
+## Funcionalidades Pendentes
 
-### Seleção de classe
+- **Integração de imagens reais** — substituir placeholders por WebP da equipe.
+- **Paisagens extras** — 4 biomas adicionais (veredas, araucárias, igapó) como cards ou fundos.
+- **Trailer** — embed YouTube/Vimeo quando disponível.
+- **Back-end real** — autenticação, banco de dados e API (pasta `backend/` reservada).
 
-Você pode escolher entre Guerreiro, Arqueiro e Curandeiro na área do hero ou nos cards de classe.
-A classe selecionada altera o destaque visual do site e atualiza o indicador superior.
+---
 
-### Cadastro do jogador
+## Deploy via GitHub Pages
 
-Na seção de cadastro, preencha os campos de nome, e-mail, telefone opcional e data de nascimento.
-O formulário valida os dados e simula a criação do perfil.
+O site é publicado automaticamente pelo GitHub Pages a partir da branch `main`, raiz `/`.
 
-### Login simulado
+- **URL pública:** https://vibl4ck.github.io/SiteArcStudios/
+- **Repositório:** https://github.com/ViBl4ck/SiteArcStudios
+- A raiz serve `index.html`, que redireciona para `frontend/index.html`.
+- Nenhum build step necessário — HTML/CSS/JS puro.
 
-No dashboard, use o e-mail cadastrado para simular o retorno da jornada.
-Se o e-mail existir na memória da sessão, o painel do jogador é liberado.
+Para publicar alterações: `git push origin main`.
 
-### Monstruário
+---
 
-Clique nas entidades bloqueadas para revelar a entrada do Codex Cultural.
-Cada descoberta atualiza a contagem geral e o progresso pessoal do dashboard.
+## Equipe
 
-## Back-end
+- Vítor Camargo
+- Luís Eduardo Carvalho Ferreira
+- Rodrigo Seabra
+- Raphael Savini
+- João Pedro de Melo Naves
 
-A pasta [backend/](backend/) já está separada para a API futura.
-O arquivo [backend/.env](backend/.env) deve guardar apenas variáveis locais, como porta e URLs de desenvolvimento.
+---
 
-Exemplo de uso atual:
-
-- `PORT=3000`
-- `NODE_ENV=development`
-- `FRONTEND_URL=http://localhost:5500`
-
-## Prints do Sistema
-
-Adicione aqui imagens do projeto quando quiser documentar o andamento.
-
-### Tela inicial
-
-Espaço para print da home.
-
-### Cadastro e dashboard
-
-Espaço para print do formulário e do painel do jogador.
-
-### Registro do Monstruário
-
-Espaço para print das entradas reveladas do Codex.
-
-### Fluxo geral
-
-Espaço para print da navegação entre as seções.
-
-## Observações Importantes
-
-- O sistema do front-end usa estado em memória; ao recarregar a página, os dados simulados são reiniciados.
-- O projeto foi pensado para ser expandido depois com uma API real no back-end.
-- O arquivo [backend/.env](backend/.env) não deve ser versionado publicamente.
+&copy; 2026 Ipê Arc Studios · Anahí (Projeto 3F) · Fauna e folclore retratados com respeito às fontes originais.

@@ -80,11 +80,3 @@ function highlightActiveSection() {
   });
 }
 
-export function updateJourneyUI(pct) {
-  const fill = document.getElementById('dashboard-journey-fill');
-  const label = document.getElementById('dashboard-journey-pct');
-  if (fill)  fill.style.width = `${pct}%`;
-  if (label) label.textContent = `${pct}%`;
-  const bar = fill?.closest('[role="progressbar"]');
-  if (bar) bar.setAttribute('aria-valuenow', String(pct));
-}

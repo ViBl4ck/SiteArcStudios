@@ -140,7 +140,7 @@ export function renderDashboardLoggedIn() {
   const codexFill  = document.getElementById('codex-dashboard-fill');
   const n = state.discoveredMonsters.size;
   if (codexCount) codexCount.textContent = n;
-  if (codexFill)  codexFill.style.width  = `${(n / 5) * 100}%`;
+  if (codexFill)  codexFill.style.width  = `${(n / 7) * 100}%`; // 7 = TOTAL_MONSTERS em bestiary.js
 }
 
 function renderDashboardLoggedOut() {
